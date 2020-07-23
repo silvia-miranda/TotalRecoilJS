@@ -6,11 +6,13 @@ import Navbar from './Components/Navbar'
 export const Atoms = (props) => {
   useEffect(() => {
     if (props.tree) {
+      //console.log("tree: ", props.tree)
       const masterContainer = document.querySelector('#atoms')
       masterContainer.innerHTML = ''
 
       const atoms = props.tree[1].atomVal
       for (let prop in atoms) {
+        console.log('atom props', atoms[prop])
         let atomContainer = document.createElement('div')
         atomContainer.classList.add('atom-div')
 
@@ -43,14 +45,16 @@ export const Atoms = (props) => {
           })
         })
 
-        let atomState = document.createElement('h3')
-        atomState.classList.add('s-margin')
-
+        let atomState = document.createElement('summary')
+        let atomInfo = document.createElement('details');
+        atomInfo.classList.add('s-margin')
         let text = JSON.stringify(atoms[prop])
-        atomState.textContent = `State : ${text}`
-
+        atomState.textContent = `State`
+        atomInfo.textContent = `${text}`
+        atomInfo.appendChild(atomState);
+        //
         atomContainer.appendChild(atomName)
-        atomContainer.appendChild(atomState)
+        atomContainer.appendChild(atomInfo)
         masterContainer.appendChild(atomContainer)
       }
 
