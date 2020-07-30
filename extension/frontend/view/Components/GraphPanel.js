@@ -6,7 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import About from './About'
-import Users from './Users'
+import History from './History'
 import Atoms from '../atomView'
 import SelectorTree from '../selectorAtomView'
 import Tree from '../treeView';
