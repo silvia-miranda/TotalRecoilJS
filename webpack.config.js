@@ -15,7 +15,7 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build/extension'),
   },
-  // Modules to load non-jacvascript files
+  // Modules to load non-javascript files
   module: {
     rules: [
       // CSS Loader

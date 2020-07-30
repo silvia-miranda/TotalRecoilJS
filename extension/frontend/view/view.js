@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import Tree from './treeView';
 import Atoms from './atomView';
 import Navbar from './Components/Navbar'
+import GraphPanel from './Components/GraphPanel'
 
 const App = () => {
   return (
-    <div>
+    <div id="container-wrapper">
       <Container />
     </div>
   )
@@ -16,7 +17,7 @@ const port = chrome.runtime.connect({ name: 'test' })
 
 const Container = () => {
 
-  const [tree, setTree] = useState()
+  const [tree, setTree] = useState();
 
   useEffect(() => {
     port.postMessage({
@@ -25,27 +26,25 @@ const Container = () => {
     })
 
     port.onMessage.addListener((message) => {
-      if (message.length === 2) {
+      if (message.length === 3) {
         setTree(message)
       }
+
     })
+   
+  
   }, [])
 
+  // change tree component to the GraphPanel component
+  // pass props: tree and selector tree
   return (
     <div id='main-container'>
-      <Tree tree={tree} />
+      <GraphPanel tree={tree} />
+      {/* <Tree tree={tree} /> */}
       <Navbar tree={tree} />
-      {/* <Atoms tree={tree} /> */}
     </div>
   )
 }
-
-
-
-
-
-
-
 
 ReactDOM.render(<App />, document.getElementById('root'))
 
